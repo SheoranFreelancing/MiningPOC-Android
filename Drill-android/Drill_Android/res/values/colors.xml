@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#ffffffff</color>
+    <color name="black">#ff000000</color>
+    <color name="action_bar_background">#81b740</color>
+    <color name="white_translucent">#1Affffff</color>
+    <color name="transparent">#00000000</color>
+    <color name="edit_text_hint_color">#ff808080</color>
+    <color name="text_view_color">#ffa9a9a9</color>
+
+    <color name="black_overlay">#66000000</color>
+    <color name="light_grey">#d3d3d3</color>
+    <color name="claimed_merchant_color">#ededed</color>
+</resources>

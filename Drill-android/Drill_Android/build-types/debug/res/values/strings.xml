@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Drill Android</string>
+    <string name="base_sarvice_url">https://halo-staging-166743663.ap-southeast-1.elb.amazonaws.com</string>
+
+</resources>

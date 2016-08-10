@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.drill.activities.MerchantListActivity">
+    <ListView
+        android:id="@+id/listViewMain"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@color/light_grey"
+        android:dividerHeight="1dp">
+    </ListView>
+    <LinearLayout
+        android:id="@+id/no_merchant_message_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            style="@style/text_view"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/no_merchant_to_show"
+            android:padding="20dp"/>
+        </LinearLayout>
+    <Button
+        style="@style/clickable_button"
+        android:id="@+id/add_new_merchant"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/add_new_merchant"/>
+
+</LinearLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:text="@string/confirmation"
+        android:textSize="20sp"
+        android:textColor="@color/action_bar_background"
+        android:gravity="center">
+
+        </TextView>
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:scrollbarAlwaysDrawVerticalTrack="true">
+
+        <TextView
+            style="@style/confirmation_text_view"
+            android:id="@+id/textview_message"
+            android:text="@string/long_message"
+            android:paddingLeft="10dp"></TextView>
+    </LinearLayout>
+    </ScrollView>
+</LinearLayout>

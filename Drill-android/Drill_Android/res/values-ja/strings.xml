@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources >
+    <string name="app_name">Love Local Listing</string>
+    <string name="login">ログイン</string>
+    <string name="invalid_login_error">グルーポンアカウントでログインしてください</string>
+
+    <string name="confirmation">確認</string>
+    <string name="long_message">long message</string>
+    <string name="select_open_days"> 開店日を選択してください </string>
+    <string name="image_upload"> 画像はアップされました </string>
+    <string name="loading">Loading</string>
+    <string name="location">場所</string>
+    <string name="select_option">オプションを選択する</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">キャンセル</string>
+    <string name="deal_details">Deal Details </string>
+    <string name="location_details">店舗場所の詳細 </string>
+    <string name="merchant_details">パートナーの詳細</string>
+    <string name="edit">編集する</string>
+    <string name="closed">closed</string>
+    <string name="select_merchant">Selected merchant </string>
+    <string name="merchants"> パートナー </string>
+    <string name="search_for">Search for </string>
+    <string name="search_merchant">パートナーを検索する </string>
+    <string name="get_merchant_req_failed">GetMerchantsRequestFailed: </string>
+    <string name="no_of_merchant_cache">No of merchants cached</string>
+    <string name="add">追加する</string>
+    <string name="none">無</string>
+
+    <string name="error_mess_to_fill_fields">必須な項目を全て入力してください</string>
+    <string name="error_mess_upload_image_outside">店舗場所を作成する前に、外側の画像をアップしてください</string>
+    <string name="error_mess_upload_image_inside">店舗場所を作成する前に、内側の画像をアップしてください</string>
+    <string name="error_mess_finish_upload_image_outside">外側画像をアップ中です。しばらくおまちください</string>
+    <string name="error_mess_finish_upload_image_inside">内側画像をアップ中です。しばらくおまちください</string>
+    <string name="error_mess_try_again">エラーがありました。もう一度試してください</string>
+    <string name="special_deal_created">店舗・場所のスペシャルディールを作成しました。id=</string>
+    <string name="wait_uploading">更新中...しばらくお待ちください</string>
+    <string name="enabling_gps_mess">ご利用の端末のGPSは有効になっていません</string>
+    <string name="error_mess_finish_upload_image_deal"> 画像はアップ中です </string>
+
+    <!-- GPS PopUp-->
+    <string name="gps_setting"> GPS設定 </string>
+    <string name="settings"> 設定 </string>
+    <string name="enabling_setting">GPSが設定されていない。設定メニューへ移動しますか。</string>
+
+
+    <string name="send_timeline_notifications_permission_label">タイムラインへ通知する</string>
+    <string name="send_timeline_notifications_permission_description">このアプリを、他のアプリへ通知することを許可する</string>
+    <string name="receive_timeline_notifications_permission_label">タイムラインの通知を受信する</string>
+    <string name="receive_timeline_notifications_permission_description">このアプリを、他のアプリから受信することを許可する</string>
+    <string name="network_disconnected_error">インターネットに接続されていません</string>
+
+
+
+
+    <!-- Create Merchant activity -->
+    <string name="create_merchant_title">  パートナーを作成する  </string>
+    <string name="edit_merchant_title">  パートナー情報を編集する  </string>
+    <string name="merchant_save">  保存する </string>
+    <string name="select_taxonomy_category">カテゴリー選択</string>
+    <string name="name"> 名前  </string>
+    <string name="merchant_create_message"> パートナーを作成しました。 </string>
+    <string name="merchant_update_message"> パートナーを更新しました。 </string>
+
+
+    <!-- Deal Detail Activity-->
+    <string name="deal_title">  Deal Title : </string>
+    <string name="title">  メニュー商品のタイトル </string>
+    <string name="deal_description">  メニュー紹介・詳細 </string>
+    <string name="shortDescription">  詳細・紹介 </string>
+    <string name="deal_taxonamy">  Taxonomy : </string>
+    <string name="deal_halo">  Halo : </string>
+    <string name="deal_short_description"> クーポンサービスの内容（短） </string>
+    <string name="deal_long_description"> クーポンサービスの詳細（長） </string>
+    <string name="deal_edit_message"> このスペシャルを作成した営業担当者だけが編集できます </string>
+
+    <!-- Location Details Activity-->
+    <string name="location_name">  店舗・場所の名前 </string>
+    <string name="location_description">  詳細・紹介 </string>
+    <string name="location_website">  ウェブサイト </string>
+    <string name="loc_specials">  スペシャル </string>
+    <string name="location_title">  場所 </string>
+    <string name="location_edit_message"> この店舗場所を登録した営業担当者だけが編集できます </string>
+    <string name="sales_rep_status">  パートナーの状態 </string>
+    <string name="location_create_message"> 店舗場所を作成しました。 </string>
+    <string name="location_update_message"> 店舗場所を更新しました。 </string>
+
+    <string name="loc_gps_link">  GPSリンク </string>
+    <string name="loc_gps_lat">  緯度 </string>
+    <string name="loc_gps_long">  軽度 </string>
+    <string name="get_gps_button"> GPSを得る </string>
+    <string name="street_number">  番地 </string>
+    <string name="street_name">  住所</string>
+    <string name="city">  町市 </string>
+    <string name="state">  都道府県 </string>
+    <string name="postal_code">  郵便番号 </string>
+    <string name="country">  国 </string>
+
+    <string name="timings">  営業時間の詳細 </string>
+    <string name="deal_tags">  タイプを選択してください </string>
+    <string name="days_open">  営業日 </string>
+    <string name="open_time">  開店時間 </string>
+    <string name="time_format"> 時時：分分 </string>
+    <string name="close_time">  閉店時間 </string>
+    <string name="message_time">  メッセージ（営業時間について） </string>
+
+    <string name="location_contact">  店舗の連絡先 </string>
+    <string name="location_first_name">  営業担当 - 名 </string>
+    <string name="location_last_name">  店舗の連絡先 - 姓</string>
+    <string name="location_email">  メールアドレス </string>
+    <string name="location_phone">  携帯電話番号 </string>
+    <string name="loc_phone"> 電話番号 </string>
+
+    <string name="management_contact">  店舗責任者の連絡先 </string>
+    <string name="same_as_location_contact">  店舗場所の連絡先と同じ </string>
+    <string name="decision_maker_first_name">  店舗責任者-名 </string>
+    <string name="decision_maker_last_name"> 店舗責任者-姓 </string>
+    <string name="decision_maker_email">  メールアドレス </string>
+    <string name="decision_maker_phone"> 電話番号  </string>
+
+    <string name="sales_representative"> 営業担当の詳細  </string>
+    <string name="first_name"> 店舗担当者 - 名  </string>
+    <string name="last_name"> 店舗担当者 - 姓 </string>
+    <string name="email"> メールアドレス  </string>
+    <string name="phone"> 電話番号  </string>
+    <string name="mobile"> 携帯電話番号  </string>
+
+
+    <string name="merchant_image"> 店舗画像  </string>
+    <string name="outside_image_view"> 外側画像 </string>
+    <string name="inside_image_view"> 内側画像  </string>
+    <string name="add_special"> スペシャルを追加する  </string>
+    <string name="edit_special"> スペシャルを編集する  </string>
+
+    <string name="term_and_condition"> 規約 </string>
+    <string name="resend_contract"> もう一度規約内容を送信する </string>
+    <string name="accept"> 申し込む </string>
+    <string name="later"> あとで </string>
+    <string name="term_and_condition_success_message"> お申し込みをいただきまして、誠にありがとうございました。\n申込み完了後、グルーポンからの申込み確認メールがお客様に送信されます。 </string>
+    <string name="term_and_condition_failed_message"> エラーが発生しました、もう一度申請してください。 </string>
+    <string name="merchant_contract_details">  グルーポン・ジャパン株式会社（以下「グルーポン」といいます」が定める、以下の「パートナー規約」（以下「本規約」といいます）を承諾のうえ、本アプリケーションを利用するための会員登録を申し込みます。なお、以下を条件として会員登録が正式に成立することを予め了解します。
+\n・グルーポンの定める事前手続きがあること。
+\n・本規約はグルーポンによって随時改訂されることがあり、常に最新の改訂版が適用になること。
+\n・申込み完了後、グルーポンからの申込み確認メールを受領した日の翌日から１４日以内に申込みのキャンセルが可能であること。但し、当該期間内に別段の意思表示がない場合はキャンセルの意思がないものとみなされること。
+ </string>
+    <string name="string_continue"> 進む </string>
+    <string name="go_back"> 戻る </string>
+    <string name="i_agree"> 同意する </string>
+    <string name="contract_popup_title"> 規約についてのご説明</string>
+
+    <string name="image_download_failed"> 画像のダウンロードが失敗しました </string>
+
+    <!-- Add Deal Activity-->
+    <string name="status">状態</string>
+    <string name="special_status"> スペシャルの状態  </string>
+    <string name="special_progress"> Special Progress  </string>
+    <string name="special_price"> クーポン価格 </string>
+    <string name="special_open_time"> 利用可能な営業時間（開始時間） </string>
+    <string name="special_close_time"> 利用可能な営業時間（終了時間） </string>
+
+    <string name="date_format"> 年年年年/月月/日日 </string>
+    <string name="start_date"> クーポン掲載期間（開始日）  </string>
+    <string name="end_date"> クーポン掲載期間（終了日） </string>
+    <string name="redemption_expiry_date"> クーポン有効期間（有効期限）  </string>
+    <string name="unlimited"> 制限なし </string>
+
+    <string name="special_service_contents"> クーポンサービスの内容 </string>
+    <string name="maximum_sold_out"> 発行可能クーポン総数（一日あたり）</string>
+    <string name="maximum_redemption"> 1日の利用上限枚数  </string>
+
+    <string name="user_limit"> ユーザ一1人当たりの購入上限枚数 </string>
+    <string name="select_categories"> カテゴリーを選択する  </string>
+
+    <string name="special_publication_period"> クーポン掲載期間  </string>
+    <string name="original_value"> 一般提供価格 </string>
+    <string name="deal_price"> ディール価格 </string>
+
+    <string name="deal_image"> ディールの画像 </string>
+    <string name="upload_image"> 画像をアップ </string>
+    <string name="special_create_message"> スペシャルを作成しました。 </string>
+    <string name="special_update_message"> スペシャルを更新しました。 </string>
+
+    <!-- Merchant Detail Activity-->
+    <string name="pizza_hut">  Pizza Hut </string>
+    <string name="serving_pizza"> Serving the finest pizza in town</string>
+    <string name="add_location">店舗場所を追加する</string>
+    <string name="edit_location">店舗場所の情報を編集する</string>
+    <string name="locations_title">  場所 </string>
+    <string name="sales_rep_name"> 営業担当の名前 </string>
+    <string name="merchant_edit_message"> このパートナーを登録した営業担当者だけが編集できます </string>
+
+    <!-- Merchant List Activity-->
+    <string name="no_merchant_to_show">  パートナーがありません </string>
+    <string name="add_new_merchant"> 新規パートナーを登録する </string>
+
+    <!-- Search Merchant Activity-->
+    <string name="enter_merchant_name">  パートナーの名前を入力する </string>
+    <string name="search">   検索する </string>
+    <string name="merchant_name"> Merchant Name </string>
+    <string name="address"> Address </string>
+    <string name="claim_status"> 取得状態 </string>
+    <string name="no_location"> 場所はありません </string>
+    <string name="claimed"> 取得済み </string>
+    <string name="unclaimed"> 未取得 </string>
+    <string name="registered"> 登録済み </string>
+    <string name="lunch"> <![CDATA[<b>ランチあり</b>]]> </string>
+
+
+    <!-- Select Option Activity-->
+    <string name="sales_rep_email"> salesRepEmail(abc@groupon.com) </string>
+    <string name="welcome_title"> L3へようこそ </string>
+    <string name="merchant_search"> Merchant Search </string>
+    <string name="search_merchant_location"> パートナーの場所を検索する</string>
+    <string name="list_merchants"> 店舗一覧</string>
+    <string name="nearby_merchants"> 近い店舗</string>
+    <string name="logout"> ログアウト</string>
+
+    <!-- Merchant Contract -->
+    <string name="merchant_status">  パートナーの状態 </string>
+    <string name="merchant_contract">  パートナー規約 </string>
+    <string name="pending_approval"> 未承認 </string>
+    <string name="request_sent"> 依頼送信済み </string>
+    <string name="approved"> 承認済み </string>
+    <string name="approval_sent"> 承認送信済み </string>
+    <string name="not_started"> 未着手 </string>
+
+    <!-- Validation error messages-->
+    <string name="special_close_time_error"> 利用締切時間は、利用開始時間より先です。編集してください。 </string>
+    <string name="location_close_time_error"> 閉店時間は、開店時間より先です。編集してください。 </string>
+    <string name="special_endDate_validation_error"> クーポン掲載期間（終了日）は、クーポン掲載期間（開始日）より先です。変更してください。 </string>
+    <string name="special_expiryDate_validation_error"> クーポン有効期間（有効期限）は、クーポン掲載期間（終了日）より先です。変更してください。 </string>
+    <string name="original_value_validation_error"> 一般提供価格は、クーポン価格より低いです。変更してください。 </string>
+    <string name="special_openDays_validation_error"> スペシャルの利用可能の日は、店舗の営業日から外れています。 </string>
+    <string name="special_openHours_validation_error"> スペシャルの利用時間は、店舗の営業時間から外れています。</string>
+
+    <string name="location_contact_invalid_email"> 店舗の連絡先のメールアドレスが有効ではありません。変更してください。 </string>
+    <string name="decision_maker_invalid_email"> 店舗責任者のメールアドレスが有効ではありません。変更してください。 </string>
+
+    <string name="taxonomy_validation_error">カテゴリーを選択してください</string>
+    <string name="taxonomy_selection_error">先に、上カテゴリーを選択してください</string>
+    <string name="merchant_name_validation_error"> パートナー名がありません。入力してください。</string>
+    <string name="merchant_description_validation_error">パートナー詳細・紹介がありません。入力してください。 </string>
+    <string name="merchant_invalid_website_error"> 有効なウェブサイトを入力してください。 </string>
+
+    <string name="loosing_data_error"> 先のページに戻ります。入力された情報を削除します。本当に宜しいですか？</string>
+
+
+    <string-array name="deal_type">
+        <item>ワンコイン（500円）</item>
+        <item>一枚札（1000円）</item>
+    </string-array>
+
+    <string-array name="weekdays">
+        <item>日曜日</item>
+        <item>月曜日</item>
+        <item>火曜日</item>
+        <item>水曜日</item>
+        <item>木曜日</item>
+        <item>金曜日</item>
+        <item>土曜日</item>
+    </string-array>
+
+    <string-array name="weekdays_small">
+        <item>日</item>
+        <item>月</item>
+        <item>火</item>
+        <item>水</item>
+        <item>木</item>
+        <item>金</item>
+        <item>土</item>
+    </string-array>
+
+    <string-array name="imagePickOption">
+        <item>カメラ</item>
+        <item>ギャラリー</item>
+    </string-array>
+
+    <string-array name="sales_rep_status">
+        <item>未着手</item>
+        <item>電話した</item>
+        <item>来店した</item>
+        <item>商談した</item>
+        <item>口で同意した</item>
+        <item>規約した</item>
+        <item>拒否された</item>
+        <item>一時休止</item>
+    </string-array>
+
+    <string-array name="special_status_values">
+        <item>In Verification</item>
+        <item>Verified </item>
+    </string-array>
+
+    <string-array name="special_progress_values">
+        <item>Not Started</item>
+        <item>Agreed</item>
+        <item>Details Acceptable</item>
+        <item>Web Images</item>
+        <item>Waiting Clarification</item>
+        <item>Verified</item>
+    </string-array>
+
+    <string-array name="deal_price_values">
+        <item>500</item>
+        <item>1000</item>
+        <item>1500</item>
+        <item>その他</item>
+    </string-array>
+
+    <string-array name="deal_tags_values">
+        <item>朝ご飯</item>
+        <item>昼ご飯</item>
+        <item>晩ご飯</item>
+        <item>飲み物</item>
+    </string-array>
+
+
+</resources>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlListLoader"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"    
+    android:layout_gravity="bottom"
+    >
+    <LinearLayout
+        android:id="@+id/llListLoader" 
+        android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:layout_centerHorizontal="true"
+    	android:background="#80000000"
+    	android:layout_alignParentBottom="true"
+    	android:orientation="horizontal">
+	    <ProgressBar
+	        android:id="@+id/progressLoader"
+	        android:layout_width="30dp"
+	        android:layout_height="30dp"
+	        android:layout_margin="5dp"
+	        android:layout_gravity="center_vertical|left"
+	        android:indeterminateDrawable="@drawable/progress_indeterminate"
+	        />
+	    <TextView 
+	        android:id="@+id/loadingMsg"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"        
+	        android:textColor="#ffffff"
+	        android:singleLine="true"
+	        android:textSize="14sp"
+	        android:layout_margin="5dp"
+	        android:text="Loading... Please wait"
+	        android:layout_gravity="center_vertical|right"/>
+    </LinearLayout>
+</RelativeLayout>

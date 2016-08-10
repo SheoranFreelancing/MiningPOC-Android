@@ -1,0 +1,109 @@
+buildscript {
+    repositories {
+        maven { url 'http://repo1.maven.org/maven2' }
+    }
+}
+
+apply plugin: 'com.android.application'
+
+repositories {
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: '*.jar')
+    compile 'com.squareup.retrofit:retrofit:1.9.0'
+    compile 'com.squareup.okhttp:okhttp:2.0.0'
+    compile 'com.android.support:support-annotations:24.1.1'
+    compile 'com.android.support:appcompat-v7:22.2.0'
+    compile 'com.google.android.gms:play-services:7.3.0'
+    compile files('libs/cloudinary-core-1.2.1.jar')
+    compile files('libs/cloudinary-android-1.2.1.jar')
+}
+
+android {
+    compileSdkVersion 21
+    buildToolsVersion "22.0.1"
+
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src']
+            resources.srcDirs = ['src']
+            aidl.srcDirs = ['src']
+            renderscript.srcDirs = ['src']
+            res.srcDirs = ['res']
+            assets.srcDirs = ['assets']
+        }
+
+        // Move the tests to tests/java, tests/res, etc...
+        instrumentTest.setRoot('tests')
+
+        // Move the build types to build-types/<type>
+        // For instance, build-types/debug/java, build-types/debug/AndroidManifest.xml, ...
+        // This moves them out of them default location under src/<type>/... which would
+        // conflict with src/ being used by the main source set.
+        // Adding new build types or product flavors should be accompanied
+        // by a similar customization.
+        debug.setRoot('build-types/debug')
+        release.setRoot('build-types/release')
+
+        // rename apk
+        applicationVariants.all { variant ->
+            renameApk(variant)
+        }
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file("debug/debug.keystore")
+            keyAlias "androiddebugkey"
+        }
+//        release {
+//            storeFile file("release/LoveLocalListingKeystore.jks")
+//            storePassword "Groupon1234"
+//            keyPassword "Groupon1234"
+//            keyAlias "LoveLocalListing"
+//        }
+    }
+
+    buildTypes {
+        debug {
+            applicationIdSuffix ".dev"
+        }
+        release {
+            applicationIdSuffix ""
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt')
+            proguardFile 'proguard-project.txt'
+//            signingConfig signingConfigs.release
+            zipAlignEnabled true
+            lintOptions {
+                disable 'MissingTranslation'
+            }
+        }
+    }
+}
+
+def renameApk(buildVariant) {
+    buildVariant.outputs.each { output ->
+        def file = output.outputFile
+        if (file != null && file.name.endsWith('.apk')) {
+            //check if staging variant
+            def date = new Date();
+            def formattedDate = date.format('yyyyMMMdd')
+            if (buildVariant.buildType.name.equals("debug")) {
+                output.outputFile = new File(output.outputFile.parent,
+                        output.outputFile.name.replace("-debug", "-debug " + formattedDate)
+                )
+            } else if (buildVariant.buildType.name.equals("release")) {
+                output.outputFile = new File(output.outputFile.parent,
+                        output.outputFile.name.replace("-release", "-release " + formattedDate)
+                )
+            }
+        }
+    }
+}

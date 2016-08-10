@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+##############################################################################
+##
+##  Automated Build Script for Creating the debug & Release Builds
+##
+##############################################################################
+
+# Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
+
+echo "Creating Debug Build!!"
+assembleDebug

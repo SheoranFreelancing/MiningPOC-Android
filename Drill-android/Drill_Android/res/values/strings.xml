@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Drill Android</string>
+    <string name="base_sarvice_url">https://tigers-halo-api-service-535885405.ap-southeast-1.elb.amazonaws.com</string>
+
+    <string name="login">Login</string>
+    <string name="invalid_login_error">Please use your groupon account to login</string>
+
+
+    <string name="confirmation">Confirmation</string>
+    <string name="long_message">long message</string>
+    <string name="select_open_days">Select Open Days</string>
+    <string name="image_upload">Image Uploaded successfully.</string>
+    <string name="loading">Loading</string>
+    <string name="location">Location</string>
+    <string name="select_option">Select Option</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+    <string name="deal_details">Deal Details </string>
+    <string name="location_details">Location Details </string>
+    <string name="merchant_details">Merchant Details </string>
+    <string name="edit">Edit</string>
+    <string name="closed">closed</string>
+    <string name="select_merchant">Selected merchant </string>
+    <string name="merchants"> Merchants </string>
+    <string name="search_for">Search for </string>
+    <string name="search_merchant">Search Merchants </string>
+    <string name="get_merchant_req_failed">GetMerchantsRequestFailed: </string>
+    <string name="no_of_merchant_cache">No of merchants cached</string>
+    <string name="add">Add</string>
+    <string name="none">None</string>
+
+
+    <string name="error_mess_to_fill_fields">Please fill the all the required fields</string>
+    <string name="error_mess_upload_image_outside">Please upload outside image before creating the Location.</string>
+    <string name="error_mess_finish_upload_image_outside">Outside image upload in progress. Please wait.</string>
+    <string name="error_mess_upload_image_inside">Please upload inside image before creating the Location.</string>
+    <string name="error_mess_finish_upload_image_inside">Inside image upload in progress. Please wait.</string>
+    <string name="error_mess_try_again">Something went wrong..please try again</string>
+    <string name="special_deal_created">Specials Deal created successfully for location. id=</string>
+    <string name="wait_uploading">Wait while updating...</string>
+    <string name="enabling_gps_mess">GPS is not Enabled in your device</string>
+    <string name="error_mess_finish_upload_image_deal">Image is being uploaded</string>
+
+    <!-- GPS PopUp-->
+    <string name="gps_setting">GPS settings</string>
+    <string name="settings">Settings</string>
+    <string name="enabling_setting">GPS is not enabled. Do you want to go to settings menu?</string>
+
+
+    <string name="send_timeline_notifications_permission_label">Sends Timeline Notifications</string>
+    <string name="send_timeline_notifications_permission_description">Allow this application to send timeline
+    notifications to other applications</string>
+    <string name="receive_timeline_notifications_permission_label">Receive Timeline Notifications</string>
+    <string name="receive_timeline_notifications_permission_description">Allow this application to receive timeline
+    notifications from other applications</string>
+    <string name="network_disconnected_error">Your device is not connected to internet now. Please try again later.</string>
+
+
+
+
+    <!-- Create Merchant activity -->
+    <string name="create_merchant_title">  Create Merchant  </string>
+    <string name="edit_merchant_title">  Edit Merchant  </string>
+    <string name="merchant_save">  Save  </string>
+    <string name="select_taxonomy_category">Select Category</string>
+    <string name="taxonomy_validation_error">Please select taxonomy category</string>
+    <string name="taxonomy_selection_error">Please select previous taxonomy category first</string>
+    <string name="name"> Name"  </string>
+    <string name="merchant_create_message"> Merchant created successfully. </string>
+    <string name="merchant_update_message"> Merchant updated successfully. </string>
+
+
+    <!-- Deal Detail Activity-->
+    <string name="deal_title">  Deal Title : </string>
+    <string name="title">  Menu Item Title </string>
+    <string name="description">  メニュー紹介・詳細 </string>
+    <string name="deal_description">  Description </string>
+    <string name="shortDescription">  Description </string>
+    <string name="deal_taxonamy">  Taxonomy : </string>
+    <string name="deal_halo">  Halo : </string>
+    <string name="deal_short_description">Short Description </string>
+    <string name="deal_long_description"> Long Description </string>
+    <string name="deal_edit_message"> You can not edit this special </string>
+
+
+    <!-- Location Details Activity-->
+    <string name="location_name">  Name </string>
+    <string name="location_description">  Description </string>
+    <string name="location_website">  Webpage </string>
+    <string name="loc_specials">  SPECIALS </string>
+    <string name="location_title">  LOCATION </string>
+    <string name="location_edit_message"> You can not edit this Location </string>
+    <string name="sales_rep_status">  Merchant Status </string>
+    <string name="location_create_message"> Merchant Location created successfully. </string>
+    <string name="location_update_message"> Merchant Location updated successfully. </string>
+
+    <string name="loc_gps_link">  GPS Link </string>
+    <string name="loc_gps_lat">  Latitude </string>
+    <string name="loc_gps_long">  Longitude </string>
+    <string name="get_gps_button"> Get GPS </string>
+    <string name="street_number">  Street Number </string>
+    <string name="street_name">  Street Name </string>
+    <string name="city">  City </string>
+    <string name="state">  State </string>
+    <string name="postal_code">  Postal Code </string>
+    <string name="country">  Country </string>
+
+    <string name="timings">  TIMINGS </string>
+    <string name="deal_tags">  Select Type </string>
+    <string name="days_open">  Days Open </string>
+    <string name="open_time">  Open Time </string>
+    <string name="time_format">  HH:MM </string>
+    <string name="close_time">  Close Time </string>
+    <string name="message_time">  Message (about time) </string>
+
+    <string name="location_contact">  LOCATION CONTACT </string>
+    <string name="location_first_name">  Location Contact - First name </string>
+    <string name="location_last_name">   Location Contact - Last name </string>
+    <string name="location_email">  Location Contact - Email </string>
+    <string name="location_phone">  Location Contact - Phone </string>
+    <string name="loc_phone">  Location - Phone </string>
+
+    <string name="management_contact">  MANAGEMENT CONTACT"</string>
+    <string name="same_as_location_contact">  Same as Location Contact </string>
+    <string name="decision_maker_first_name">  Decision Maker - First name </string>
+    <string name="decision_maker_last_name">  Decision Maker - Last name </string>
+    <string name="decision_maker_email">  Decision Maker - Email </string>
+    <string name="decision_maker_phone"> Decision Maker - Phone  </string>
+
+    <string name="sales_representative"> SALES REPRESENTATIVE  </string>
+    <string name="first_name"> First name  </string>
+    <string name="last_name"> Last name  </string>
+    <string name="email"> Email  </string>
+    <string name="phone"> Phone  </string>
+    <string name="mobile"> Mobile  </string>
+
+    <string name="merchant_image"> MERCHANT IMAGE  </string>
+    <string name="outside_image_view"> Outside Image </string>
+    <string name="inside_image_view"> Inside Image  </string>
+    <string name="add_special"> Add Special  </string>
+    <string name="edit_special"> Edit Special  </string>
+
+    <string name="term_and_condition"> Terms and Conditions </string>
+    <string name="resend_contract"> Resend Contract </string>
+    <string name="accept"> Submit </string>
+    <string name="later"> Later </string>
+    <string name="term_and_condition_success_message"> I received your application , Thank you very much.\nAfter the application is complete , the application confirmation email from Groupon will be sent to you. </string>
+    <string name="term_and_condition_failed_message"> There was an error, please apply again. </string>
+
+    <string name="merchant_contract_details"> Groupon Japan called Co., Ltd. (" Groupon " "is set , the following" partner Terms " ( hereinafter referred to as the" Terms " ) over the consent , you can apply for membership in order to use this application . In addition , it will advance understanding that the member registration is formally established , as a condition .
+\nThat there is a pre- procedure established by Groupon.
+\nThis Agreement may be from time to time amended by Groupon , always that the latest revision is made on the application.
+\nAfter the application is complete , it is possible cancellation of the application from the day following the date of receipt of the application confirmation email from Groupon within 14 days . However , it is considered to be that there is no cancellation of the intention if otherwise the intention within the period.</string>
+    <string name="string_continue"> Continue </string>
+    <string name="go_back"> Go Back </string>
+    <string name="i_agree"> I Agree </string>
+    <string name="contract_popup_title"> And your description of Terms </string>
+
+
+    <string name="image_download_failed"> Image download failed. </string>
+
+    <!-- Add Deal Activity-->
+    <string name="status"> Status  </string>
+    <string name="special_status"> Special Status  </string>
+    <string name="special_progress"> Special Progress  </string>
+    <string name="special_price"> Special Price  </string>
+    <string name="special_open_time"> Open Time  </string>
+    <string name="special_close_time"> Close Time  </string>
+
+    <string name="start_date"> Start Date  </string>
+    <string name="date_format"> yyyy/mm/dd  </string>
+    <string name="end_date"> End Date </string>
+    <string name="redemption_expiry_date"> Redemption Expiry Date  </string>
+
+    <string name="special_service_contents"> SPECIAL SERVICE CONTENTS  </string>
+    <string name="maximum_sold_out"> Maximum Sold Per Day  </string>
+    <string name="maximum_redemption"> Maximum Redemption  </string>
+    <string name="unlimited"> Unlimited  </string>
+
+    <string name="user_limit"> USER LIMIT  </string>
+    <string name="select_categories"> Select Categories  </string>
+
+    <string name="special_publication_period"> SPECIAL PUBLICATION PERIOD  </string>
+    <string name="original_value"> Original Value </string>
+    <string name="deal_price"> Deal Price  </string>
+
+    <string name="deal_image"> DEAL IMAGE </string>
+    <string name="upload_image"> Upload Image  </string>
+    <string name="special_create_message"> Special created successfully. </string>
+    <string name="special_update_message"> Special updated successfully. </string>
+
+    <!-- Merchant Detail Activity-->
+    <string name="pizza_hut">  Pizza Hut </string>
+    <string name="serving_pizza"> Serving the finest pizza in town</string>
+    <string name="add_location">  Add Location </string>
+    <string name="edit_location">  Edit Location </string>
+    <string name="locations_title">  LOCATIONS </string>
+    <string name="sales_rep_name">  Sales Rep Name </string>
+    <string name="merchant_edit_message"> Only the rep who added the merchant can edit. </string>
+
+    <!-- Merchant List Activity-->
+    <string name="no_merchant_to_show">  No Merchant to show </string>
+    <string name="add_new_merchant"> Add New Merchant</string>
+
+    <!-- Search Merchant Activity-->
+    <string name="enter_merchant_name">  Enter Merchant name </string>
+    <string name="search">  Search </string>
+    <string name="merchant_name"> Merchant Name </string>
+    <string name="address"> Address </string>
+    <string name="claim_status"> Claim Status </string>
+    <string name="no_location"> No Location </string>
+    <string name="claimed"> Claimed </string>
+    <string name="unclaimed"> Unclaimed </string>
+    <string name="registered"> Registered </string>
+    <string name="lunch"> <![CDATA[<b>Lunch</b>]]> </string>
+
+
+    <!-- Select Option Activity-->
+    <string name="sales_rep_email"> salesRepEmail(abc@groupon.com) </string>
+    <string name="welcome_title"> Welcome to L3 </string>
+    <string name="merchant_search"> Merchant Search</string>
+    <string name="search_merchant_location"> Search Merchant Locations</string>
+    <string name="list_merchants"> List Merchants</string>
+    <string name="nearby_merchants"> NearBy Merchants</string>
+    <string name="logout"> Logout</string>
+
+    <!-- Settings Activity-->
+    <string name="general"> General </string>
+    <string name="server_settings"> Server Settings </string>
+    <string name="prod_url"> Production Server </string>
+    <string name="dev_url"> Development Server </string>
+    <string name="clear_cache"> Clear Cache </string>
+    <string name="custom_host_url"> Custom Host URL</string>
+    <string name="custom_host_url_summary"> Enter Custom Host URL</string>
+    <string name="show_setting"> Show Setting </string>
+
+    <!-- Merchant Contract -->
+    <string name="merchant_status">  MERCHANT STATUS </string>
+    <string name="merchant_contract">  MERCHANT CONTRACT </string>
+    <string name="pending_approval"> Pending Approval </string>
+    <string name="request_sent"> Request Sent </string>
+    <string name="approved"> Approved </string>
+    <string name="approval_sent"> Approval Sent </string>
+    <string name="not_started"> Not Started </string>
+
+    <!-- Validation error messages-->
+    <string name="location_close_time_error"> Close time can not be before open time. </string>
+    <string name="special_close_time_error"> Close time can not be before open time. </string>
+    <string name="invalid_website"> Enter valid website. </string>
+    <string name="location_contact_invalid_email"> Enter valid location contact email address. </string>
+    <string name="decision_maker_invalid_email"> Enter valid decision maker email address. </string>
+    <string name="original_value_validation_error"> Special original value is less then price. </string>
+
+    <string name="merchant_name_validation_error">Merchant Name is Missing.</string>
+    <string name="merchant_description_validation_error">Merchant Description is Missing. </string>
+    <string name="merchant_invalid_website_error">Please Enter a valid website. </string>
+
+    <string name="special_endDate_validation_error"> End Date should be later than Start Date. </string>
+    <string name="special_expiryDate_validation_error"> Redemption Expiry Date should be later than End Date. </string>
+    <string name="special_originalValue_validation_error"> Special original value should not be less then price. </string>
+    <string name="special_openDays_validation_error"> Special Open Days can not be different from Location Open Days. </string>
+    <string name="special_openHours_validation_error"> Open Time should be later than Location Open time and Close Time should be before than Location Close Time.</string>
+
+    <string name="loosing_data_error"> You are about to leave this page.  You will lose all data.  Are you sure? </string>
+    <string name="password">password</string>
+    <string name="find_location">find location</string>
+    <string name="find">Find</string>
+    <string name="remove">remove</string>
+
+    <string-array name="deal_type">
+        <item>Single Coin</item>
+        <item>Single Bill</item>
+    </string-array>
+
+    <string-array name="weekdays">
+        <item>Sunday</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+    </string-array>
+
+    <string-array name="weekdays_small">
+        <item>Sun</item>
+        <item>Mon</item>
+        <item>Tue</item>
+        <item>Wed</item>
+        <item>Thu</item>
+        <item>Fri</item>
+        <item>Sat</item>
+    </string-array>
+    <string-array name="imagePickOption">
+        <item>Camera</item>
+        <item>Gallery</item>
+    </string-array>
+
+    <string-array name="sales_rep_status">
+        <item>Not Started</item>
+        <item>Called</item>
+        <item>Visited</item>
+        <item>Met</item>
+        <item>Verbal Agreement</item>
+        <item>Written Agreement</item>
+        <item>Rejected</item>
+        <item>Paused</item>
+    </string-array>
+
+    <string-array name="special_status_values">
+        <item>In Verification</item>
+        <item>Verified </item>
+    </string-array>
+
+    <string-array name="special_progress_values">
+        <item>Not Started</item>
+        <item>Agreed</item>
+        <item>Details Acceptable</item>
+        <item>Web Images</item>
+        <item>Waiting Clarification</item>
+        <item>Verified</item>
+    </string-array>
+
+    <string-array name="deal_price_values">
+        <item>500</item>
+        <item>1000</item>
+        <item>1500</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="deal_tags_values">
+        <item>Breakfast</item>
+        <item>Lunch</item>
+        <item>Dinner</item>
+        <item>Drinks</item>
+    </string-array>
+
+</resources>

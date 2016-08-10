@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/l3_back"
+        android:background="@color/action_bar_background"/>
+
+    <TextView
+        android:id="@+id/activityTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textSize="19sp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="@string/create_merchant_title"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/saveButton"
+        android:text="@string/merchant_save"
+        android:background="@color/action_bar_background"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:layout_height="48dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/white" />
+</RelativeLayout>
