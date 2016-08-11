@@ -15,11 +15,16 @@ import com.drill.android.R;
 import com.drill.data.DotData;
 import com.drill.sync.RetroHttpManager;
 import com.drill.ui.LT_BaseActivity;
+import com.google.android.gms.maps.model.LatLng;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.util.ArrayList;
+
 import retrofit.RetrofitError;
+
+import static com.drill.utils.Constants.LATLNG_LIST;
 
 public class WebGraphActivity extends LT_BaseActivity {
 
@@ -49,6 +54,7 @@ public class WebGraphActivity extends LT_BaseActivity {
         editButton.setText(R.string.edit);
         editButton.setVisibility(View.INVISIBLE);
 
+        ArrayList<LatLng> filelist =  (ArrayList<LatLng>)getIntent().getSerializableExtra(LATLNG_LIST);
         webview = (ObservableWebView) findViewById(R.id.webview);
         webview.getSettings().setJavaScriptEnabled(true);
         webview.loadUrl("file:///android_asset/html/dot_colors.html");

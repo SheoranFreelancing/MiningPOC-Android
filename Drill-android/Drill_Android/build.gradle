@@ -62,12 +62,6 @@ android {
             storeFile file("debug/debug.keystore")
             keyAlias "androiddebugkey"
         }
-//        release {
-//            storeFile file("release/LoveLocalListingKeystore.jks")
-//            storePassword "Groupon1234"
-//            keyPassword "Groupon1234"
-//            keyAlias "LoveLocalListing"
-//        }
     }
 
     buildTypes {
@@ -79,7 +73,6 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt')
             proguardFile 'proguard-project.txt'
-//            signingConfig signingConfigs.release
             zipAlignEnabled true
             lintOptions {
                 disable 'MissingTranslation'

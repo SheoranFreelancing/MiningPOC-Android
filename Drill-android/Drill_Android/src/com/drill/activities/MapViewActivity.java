@@ -9,7 +9,6 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +16,11 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.directions.route.AbstractRouting;
+import com.directions.route.Route;
+import com.directions.route.RouteException;
+import com.directions.route.Routing;
+import com.directions.route.RoutingListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -30,17 +34,23 @@ import com.drill.android.R;
 import com.drill.listeners.GPSTracker;
 import com.drill.sync.RetroHttpManager;
 import com.drill.ui.LT_BaseActivity;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class MapViewActivity extends LT_BaseActivity implements OnMapReadyCallback {
+import static com.drill.utils.Constants.LATLNG_LIST;
+
+public class MapViewActivity extends LT_BaseActivity implements OnMapReadyCallback, RoutingListener {
 
     private GoogleMap mMap;
     private HashMap<Marker, LatLng> mMarkersHashMap;
     android.location.Location loc;
     private GPSTracker gpsTracker;
+    private List<Polyline> polylines;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,11 +77,13 @@ public class MapViewActivity extends LT_BaseActivity implements OnMapReadyCallba
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MapViewActivity.this, WebGraphActivity.class);
+                intent.putExtra(LATLNG_LIST,new ArrayList<>(mMarkersHashMap.values()));
                 startActivity(intent);
             }
         });
         editButton.setText("Graph");
 
+        polylines = new ArrayList<>();
         mMarkersHashMap = new HashMap<Marker, LatLng>();
         gpsTracker = new GPSTracker(this);
         setUpMap();
@@ -100,6 +112,13 @@ public class MapViewActivity extends LT_BaseActivity implements OnMapReadyCallba
             }
         });
 
+        Button btn_map_route = (Button) findViewById(R.id.btn_map_route);
+        btn_map_route.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                findRoute();
+            }
+        });
 
     }
 
@@ -189,6 +208,16 @@ public class MapViewActivity extends LT_BaseActivity implements OnMapReadyCallba
 
     }
 
+    private void findRoute() {
+        Routing routing = new Routing.Builder()
+                .travelMode(AbstractRouting.TravelMode.DRIVING)
+                .withListener(this)
+                .alternativeRoutes(true)
+                .waypoints(new ArrayList<>(mMarkersHashMap.values()))
+                .build();
+        routing.execute();
+    }
+
     @Override
     public void onSuccessResponse(RetroHttpManager manager) {
         super.onSuccessResponse(manager);
@@ -196,6 +225,46 @@ public class MapViewActivity extends LT_BaseActivity implements OnMapReadyCallba
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+    }
+
+    @Override
+    public void onRoutingFailure(RouteException e) {
+
+    }
+
+    @Override
+    public void onRoutingStart() {
+
+    }
+
+    @Override
+    public void onRoutingSuccess(List<Route> route, int shortestRouteIndex) {
+        int[] COLORS = new int[]{R.color.black,R.color.light_grey,R.color.background_material_dark,R.color.light_grey,R.color.primary_dark_material_light};
+
+        if (polylines.size() > 0) {
+            for (Polyline poly : polylines) {
+                poly.remove();
+            }
+        }
+        for (int i = 0; i <route.size(); i++) {
+
+            //In case of more than 5 alternative routes
+            int colorIndex = i % COLORS.length;
+
+            PolylineOptions polyOptions = new PolylineOptions();
+            polyOptions.color(getResources().getColor(COLORS[colorIndex]));
+            polyOptions.width(10 + i * 3);
+            polyOptions.addAll(route.get(i).getPoints());
+            Polyline polyline = mMap.addPolyline(polyOptions);
+            polylines.add(polyline);
+
+            Toast.makeText(getApplicationContext(),"Route "+ (i+1) +": distance - "+ route.get(i).getDistanceValue()+": duration - "+ route.get(i).getDurationValue(),Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onRoutingCancelled() {
+
     }
 
     // An AsyncTask class for accessing the GeoCoding Web Service
