@@ -54,11 +54,12 @@ public class WebGraphActivity extends LT_BaseActivity {
         editButton.setText(R.string.edit);
         editButton.setVisibility(View.INVISIBLE);
 
-        ArrayList<LatLng> filelist =  (ArrayList<LatLng>)getIntent().getSerializableExtra(LATLNG_LIST);
+        ArrayList<LatLng> latlangList =  (ArrayList<LatLng>)getIntent().getSerializableExtra(LATLNG_LIST);
         webview = (ObservableWebView) findViewById(R.id.webview);
         webview.getSettings().setJavaScriptEnabled(true);
         webview.loadUrl("file:///android_asset/html/dot_colors.html");
         final String jsonDataString = getDataAsJsonString();
+        android.util.Log.e("Data:", ">" + jsonDataString);
         webview.setWebViewClient(new WebViewClient(){
             public void onPageFinished(WebView view, String url){
                 webview.loadUrl("javascript:drawWithData('" + jsonDataString + "')");
@@ -68,7 +69,7 @@ public class WebGraphActivity extends LT_BaseActivity {
 
     private String getDataAsJsonString() {
         try {
-            JSONArray jsonData = DotData.getJSONArrayForData(100);
+            JSONArray jsonData = DotData.getJSONArrayForData(10);
             return jsonData.toString();
         } catch (JSONException e) {
             e.printStackTrace();
