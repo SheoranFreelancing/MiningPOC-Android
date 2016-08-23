@@ -1,0 +1,71 @@
+<head>
+ 	<script type="text/javascript" src="../scripts/plotly-latest.min.js"></script>
+	<script type="text/javascript" src="../scripts/views-rendering.js"></script>
+</head>
+	<div id="graphDiv" style="width: 95%; height: 90%;"><!-- Plotly chart will be drawn inside this DIV --></div>
+<script>
+
+function drawWithData(dataString)
+{
+	console.log('dataString');
+    var latArr = [];
+    var lngArr = [];
+    var elevArr = [];
+    var latArrRodsVal = [];
+    var lngArrRodsVal = [];
+	var elevArrRods = [];
+    var hoverTipsArr = [];
+    var random = Math.random;
+
+    for (var i = 0 ; i < 10; i++)
+    {
+        if (i == 0) {
+            latArr.push(0);
+            lngArr.push(0);
+            elevArr.push(10);
+            latArrRodsVal.push(0);
+            lngArrRodsVal.push(0);
+            elevArrRods.push(20);
+        }
+        else {
+            latArr.push(i*2+random());
+            lngArr.push(i*3+random());
+            elevArr.push(10);
+            latArrRodsVal.push(i*2+random());
+            lngArrRodsVal.push(i*3+random());
+            elevArrRods.push(20);
+		}
+        hoverTipsArr.push("blah");
+    }
+
+    data = [{
+        x: latArr,
+        y: lngArr,
+        z: elevArr,
+        mode: 'line',
+        type: 'scatter3d',
+        showScale: false,
+    }
+            ,
+            {
+                x: latArrRodsVal,
+                y: lngArrRodsVal,
+                z: elevArrRods,
+                text: hoverTipsArr,
+                mode: 'line',
+                type: 'scatter3d',
+                showScale: false,
+            }
+
+    ];
+   
+    // bottomView(data);
+    //topView(data);
+    sideView(data);
+}
+
+</script>
+<p>
+	<body onload="drawWithData()">
+    End of document. 
+</p>

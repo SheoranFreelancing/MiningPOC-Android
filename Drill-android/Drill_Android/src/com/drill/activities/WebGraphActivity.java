@@ -54,10 +54,9 @@ public class WebGraphActivity extends LT_BaseActivity {
         editButton.setText(R.string.edit);
         editButton.setVisibility(View.INVISIBLE);
 
-        ArrayList<LatLng> latlangList =  (ArrayList<LatLng>)getIntent().getSerializableExtra(LATLNG_LIST);
         webview = (ObservableWebView) findViewById(R.id.webview);
         webview.getSettings().setJavaScriptEnabled(true);
-        webview.loadUrl("file:///android_asset/html/dot_colors.html");
+        webview.loadUrl("file:///android_asset/html/plotly.html");
         final String jsonDataString = getDataAsJsonString();
         android.util.Log.e("Data:", ">" + jsonDataString);
         webview.setWebViewClient(new WebViewClient(){
@@ -69,7 +68,9 @@ public class WebGraphActivity extends LT_BaseActivity {
 
     private String getDataAsJsonString() {
         try {
-            JSONArray jsonData = DotData.getJSONArrayForData(10);
+            ArrayList<LatLng> latlangList =  (ArrayList<LatLng>)getIntent().getSerializableExtra(LATLNG_LIST);
+//            JSONArray jsonData = DotData.getJSONArrayForData(10);
+            JSONArray jsonData = DotData.getJSONArrayForData(latlangList);
             return jsonData.toString();
         } catch (JSONException e) {
             e.printStackTrace();

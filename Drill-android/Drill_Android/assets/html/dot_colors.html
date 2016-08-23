@@ -107,6 +107,7 @@
 		data = new vis.DataSet();
 		for (var i = 0; i < jsonData.length; i++) {
 		    var dot = jsonData[i];
+		    console.log('i:'+i);
 		    console.log('x:'+dot.x);
 		    console.log('y:'+dot.y);
 		    console.log('z:'+dot.z);
@@ -118,7 +119,7 @@
   </script>
 </head>
 
-<body onload="drawWithData()">
+<body onload="drawIt()">
 <div id="mygraph"></div>
 
 <div id="info"></div>

@@ -17,11 +17,17 @@ public class DotData {
     double x, y, z, dist;
 
     private DotData(LatLng latLng) {
-        Random r = new Random();
         x = latLng.latitude;
         y = latLng.longitude;
-        z = 10;
-        dist = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2));
+        this.z = 2000;
+        dist = 200;
+    }
+
+    private DotData(LatLng latLng, double z) {
+        x = latLng.latitude;
+        y = latLng.longitude;
+        this.z = z;
+        dist = 20;
     }
 
     private DotData(int i) {
@@ -51,8 +57,12 @@ public class DotData {
 
     public static JSONArray getJSONArrayForData(ArrayList<LatLng> latlangList) throws JSONException {
         JSONArray jsonArray = new JSONArray();
+        int i = 0;
         for(LatLng latLng : latlangList) {
             jsonArray.put(new DotData(latLng).getAsJSONObject());
+            int z = (latlangList.size() - Math.abs(latlangList.size()/2 - i)) * 10;
+            jsonArray.put(new DotData(latLng, z).getAsJSONObject());
+            i++;
         }
         return jsonArray;
     }

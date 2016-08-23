@@ -11,6 +11,7 @@
 
   <script type="text/javascript">
     var data = null;
+    var data1 = null;
     var graph = null;
 
 // function some Data() {
@@ -69,9 +70,43 @@
 		// data = new initializeRandomData();
 		// data = new someData();
 		// data = JSON.parse(jsonData);
-		drawVisualization(data)
+		drawVisualization(data);
+		drawVLineVisualization();
 	}
-	
+    function drawVLineVisualization() {
+      // Create and populate a data1 table.
+      data1 = new vis.DataSet();
+
+      // create some nice looking data1 with sin/cos
+      var steps = 500;
+      var axisMax = 314;
+      var tmax = 4 * 2 * Math.PI;
+      var axisStep = axisMax / steps;
+      for (var t = 0; t < tmax; t += tmax / steps) {
+        var r = 1;
+        var x = r * Math.sin(t);
+        var y = r * Math.cos(t);
+        var z = t / tmax;
+        data1.add({x:x,y:y,z:z});
+      }
+
+      // specify options
+      var options = {
+        width:  '600px',
+        height: '600px',
+        style: 'line',
+        showPerspective: false,
+        showGrid: true,
+        keepAspectRatio: true,
+        verticalRatio: 1.0
+      };
+
+      // create our graph
+      var container = document.getElementById('mygraph');
+      graph = new vis.Graph3d(container, data1, options);
+
+      graph.setCameraPosition(0.4, undefined, undefined);
+    }
   </script>
 </head>
 
