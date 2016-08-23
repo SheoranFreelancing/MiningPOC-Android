@@ -40,6 +40,8 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 import static com.drill.utils.Constants.LATLNG_LIST;
@@ -84,7 +86,7 @@ public class MapViewActivity extends LT_BaseActivity implements OnMapReadyCallba
         editButton.setText("Graph");
 
         polylines = new ArrayList<>();
-        mMarkersHashMap = new HashMap<Marker, LatLng>();
+        mMarkersHashMap = new LinkedHashMap<>();
         gpsTracker = new GPSTracker(this);
         setUpMap();
         loc = gpsTracker.getLocation();
@@ -116,7 +118,7 @@ public class MapViewActivity extends LT_BaseActivity implements OnMapReadyCallba
         btn_map_route.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                findRoute();
+//                findRoute();
             }
         });
 
@@ -162,6 +164,7 @@ public class MapViewActivity extends LT_BaseActivity implements OnMapReadyCallba
         public void onInfoWindowClick(Marker marker) {
             marker.remove();
             mMarkersHashMap.remove(marker);
+            drowPoyLines();
         }
     };
 
@@ -179,6 +182,7 @@ public class MapViewActivity extends LT_BaseActivity implements OnMapReadyCallba
         @Override
         public void onMarkerDragEnd(Marker marker) {
             mMarkersHashMap.put(marker, marker.getPosition());
+            drowPoyLines();
         }
     };
 
@@ -190,6 +194,7 @@ public class MapViewActivity extends LT_BaseActivity implements OnMapReadyCallba
                     .position(latLng)
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
             mMarkersHashMap.put(currentMarker, latLng);
+            drowPoyLines();
         }
     };
 
@@ -218,6 +223,31 @@ public class MapViewActivity extends LT_BaseActivity implements OnMapReadyCallba
         routing.execute();
     }
 
+    private void drowPoyLines() {
+        if(mMarkersHashMap.size() > 1 ) {
+            removePolyLines();
+
+            List<LatLng> latLngList = new LinkedList<>(mMarkersHashMap.values());
+            PolylineOptions polyOptions = new PolylineOptions();
+            polyOptions.color(getResources().getColor(R.color.black));
+            polyOptions.width(10);
+            polyOptions.addAll(latLngList);
+            Polyline polyline = mMap.addPolyline(polyOptions);
+            polylines.add(polyline);
+        } else {
+            removePolyLines();
+        }
+
+    }
+
+    private void removePolyLines() {
+        if (polylines.size() > 0) {
+            for (Polyline poly : polylines) {
+                poly.remove();
+            }
+        }
+    }
+
     @Override
     public void onSuccessResponse(RetroHttpManager manager) {
         super.onSuccessResponse(manager);
@@ -234,32 +264,30 @@ public class MapViewActivity extends LT_BaseActivity implements OnMapReadyCallba
 
     @Override
     public void onRoutingStart() {
-
     }
 
     @Override
     public void onRoutingSuccess(List<Route> route, int shortestRouteIndex) {
-        int[] COLORS = new int[]{R.color.black,R.color.light_grey,R.color.background_material_dark,R.color.light_grey,R.color.primary_dark_material_light};
 
-        if (polylines.size() > 0) {
-            for (Polyline poly : polylines) {
-                poly.remove();
-            }
-        }
-        for (int i = 0; i <route.size(); i++) {
-
-            //In case of more than 5 alternative routes
-            int colorIndex = i % COLORS.length;
-
-            PolylineOptions polyOptions = new PolylineOptions();
-            polyOptions.color(getResources().getColor(COLORS[colorIndex]));
-            polyOptions.width(10 + i * 3);
-            polyOptions.addAll(route.get(i).getPoints());
-            Polyline polyline = mMap.addPolyline(polyOptions);
-            polylines.add(polyline);
-
-            Toast.makeText(getApplicationContext(),"Route "+ (i+1) +": distance - "+ route.get(i).getDistanceValue()+": duration - "+ route.get(i).getDurationValue(),Toast.LENGTH_SHORT).show();
-        }
+//        if (polylines.size() > 0) {
+//            for (Polyline poly : polylines) {
+//                poly.remove();
+//            }
+//        }
+//        for (int i = 0; i <route.size(); i++) {
+//
+//            //In case of more than 5 alternative routes
+//            int colorIndex = i % COLORS.length;
+//
+//            PolylineOptions polyOptions = new PolylineOptions();
+//            polyOptions.color(getResources().getColor(COLORS[colorIndex]));
+//            polyOptions.width(10 + i * 3);
+//            polyOptions.addAll(route.get(i).getPoints());
+//            Polyline polyline = mMap.addPolyline(polyOptions);
+//            polylines.add(polyline);
+//
+//            Toast.makeText(getApplicationContext(),"Route "+ (i+1) +": distance - "+ route.get(i).getDistanceValue()+": duration - "+ route.get(i).getDurationValue(),Toast.LENGTH_SHORT).show();
+//        }
     }
 
     @Override
