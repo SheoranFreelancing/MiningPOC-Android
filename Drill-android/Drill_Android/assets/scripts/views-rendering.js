@@ -1,13 +1,13 @@
 
-function bottomView( data)
+function bottomView(data, chartWidth, chartHeight)
 {
     var layout = {
         title: 'Bore Path Plot',
         showlegend: false,
 
         autosize: false,
-        width: 800,
-        height: 600,
+        width: chartWidth,
+        height: chartHeight,
         margin: {
             l: 0,
             r: 0,

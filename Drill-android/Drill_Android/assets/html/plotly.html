@@ -5,37 +5,35 @@
 	<div id="graphDiv" style="width: 95%; height: 90%;"><!-- Plotly chart will be drawn inside this DIV --></div>
 <script>
 
+var markersArray = [];
+var rodsArray = [];
+var chartWidth;
+var chartHeight;
+
 function drawWithData(dataString)
 {
-	console.log('dataString');
+    intializeMarkersData(dataString);
     var latArr = [];
     var lngArr = [];
     var elevArr = [];
     var latArrRodsVal = [];
     var lngArrRodsVal = [];
-	var elevArrRods = [];
+    var elevArrRods = [];
     var hoverTipsArr = [];
-    var random = Math.random;
 
-    for (var i = 0 ; i < 10; i++)
+    for (var i = 0 ; i < markersArray.length; i++)
     {
-        if (i == 0) {
-            latArr.push(0);
-            lngArr.push(0);
-            elevArr.push(10);
-            latArrRodsVal.push(0);
-            lngArrRodsVal.push(0);
-            elevArrRods.push(20);
-        }
-        else {
-            latArr.push(i*2+random());
-            lngArr.push(i*3+random());
-            elevArr.push(10);
-            latArrRodsVal.push(i*2+random());
-            lngArrRodsVal.push(i*3+random());
-            elevArrRods.push(20);
-		}
-        hoverTipsArr.push("blah");
+        latArr.push(markersArray[i].x);
+        lngArr.push(markersArray[i].y);
+        elevArr.push(markersArray[i].z);
+    }
+
+    for (var i = 0 ; i < rodsArray.length; i++)
+    {
+        latArrRodsVal.push(rodsArray[i].x);
+        lngArrRodsVal.push(rodsArray[i].y);
+        elevArrRods.push(rodsArray[i].z);
+        hoverTipsArr.push("Rod: " + (i+1));
     }
 
     data = [{
@@ -44,28 +42,45 @@ function drawWithData(dataString)
         z: elevArr,
         mode: 'line',
         type: 'scatter3d',
-        showScale: false,
-    }
-            ,
-            {
-                x: latArrRodsVal,
-                y: lngArrRodsVal,
-                z: elevArrRods,
-                text: hoverTipsArr,
-                mode: 'line',
-                type: 'scatter3d',
-                showScale: false,
-            }
-
+        showScale: false
+        },
+        {
+            x: latArrRodsVal,
+            y: lngArrRodsVal,
+            z: elevArrRods,
+            text: hoverTipsArr,
+            mode: 'line',
+            type: 'scatter3d',
+            showScale: false
+        }
     ];
-   
-    // bottomView(data);
-    //topView(data);
-    sideView(data);
+   //plotChart(data);
+   bottomView(data, chartWidth, chartHeight);
+}
+
+function intializeMarkersData(markers_data) {
+	var mydata = JSON.parse(markers_data);
+	console.log(mydata);
+	markersArray = mydata.markers_json;
+    rodsArray = mydata.rods_json;
+    chartWidth = mydata.chartWidth;
+    chartHeight = mydata.chartHeight;
+    console.log(chartWidth);
+    console.log(chartHeight);
+}
+
+function plotChart(data)
+{
+    var layout = {
+    title: 'Bore Path Plot',
+    width: chartWidth,
+    height: chartHeight,
+    showlegend: false
+    };
+    Plotly.newPlot('graphDiv', data, layout, {scrollZoom: true});
 }
 
 </script>
 <p>
-	<body onload="drawWithData()">
-    End of document. 
+    End of document.
 </p>

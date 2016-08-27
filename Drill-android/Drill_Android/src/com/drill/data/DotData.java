@@ -49,7 +49,7 @@ public class DotData {
 
     public static JSONObject getJSONArrayForData(ArrayList<LatLng> latlangList) throws JSONException {
         JSONArray jsonArrayMarkers = new JSONArray();
-        latlangList = getRandomLatLngList(20);
+        latlangList = getRandomLatLngList(5);
         ArrayList<DotData> markerCoordinatesList = new ArrayList<DotData>(latlangList.size());
         int i = 0;
         for(LatLng latLng : latlangList) {

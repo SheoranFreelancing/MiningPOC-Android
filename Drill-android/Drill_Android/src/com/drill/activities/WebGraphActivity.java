@@ -3,6 +3,7 @@ package com.drill.activities;
 import android.app.ActionBar;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -17,7 +18,6 @@ import com.drill.sync.RetroHttpManager;
 import com.drill.ui.LT_BaseActivity;
 import com.google.android.gms.maps.model.LatLng;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -69,9 +69,13 @@ public class WebGraphActivity extends LT_BaseActivity {
 
     private String getDataAsJsonString() {
         try {
+            DisplayMetrics metrics = getApplication().getResources().getDisplayMetrics();
+            int width = metrics.widthPixels;
+            int height = metrics.heightPixels;
             ArrayList<LatLng> latlangList =  (ArrayList<LatLng>)getIntent().getSerializableExtra(LATLNG_LIST);
-//            JSONArray jsonData = DotData.getJSONArrayForData(10);
             JSONObject jsonData = DotData.getJSONArrayForData(latlangList);
+            jsonData.put("chartWidth", width);
+            jsonData.put("chartHeight", height);
             return jsonData.toString();
         } catch (JSONException e) {
             e.printStackTrace();
