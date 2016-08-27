@@ -19,6 +19,7 @@ import com.google.android.gms.maps.model.LatLng;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -70,7 +71,7 @@ public class WebGraphActivity extends LT_BaseActivity {
         try {
             ArrayList<LatLng> latlangList =  (ArrayList<LatLng>)getIntent().getSerializableExtra(LATLNG_LIST);
 //            JSONArray jsonData = DotData.getJSONArrayForData(10);
-            JSONArray jsonData = DotData.getJSONArrayForData(latlangList);
+            JSONObject jsonData = DotData.getJSONArrayForData(latlangList);
             return jsonData.toString();
         } catch (JSONException e) {
             e.printStackTrace();
