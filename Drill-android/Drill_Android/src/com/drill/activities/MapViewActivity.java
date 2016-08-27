@@ -5,28 +5,34 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
-import android.location.Address;
-import android.location.Geocoder;
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.directions.route.AbstractRouting;
-import com.directions.route.Route;
-import com.directions.route.RouteException;
-import com.directions.route.Routing;
-import com.directions.route.RoutingListener;
+import com.drill.adaptors.PlaceAutoCompleteAdapter;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.PlaceBuffer;
+import com.google.android.gms.location.places.Places;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.drill.adaptors.MarkerInfoWindowAdapter;
@@ -37,7 +43,6 @@ import com.drill.ui.LT_BaseActivity;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -46,13 +51,19 @@ import java.util.List;
 
 import static com.drill.utils.Constants.LATLNG_LIST;
 
-public class MapViewActivity extends LT_BaseActivity implements OnMapReadyCallback, RoutingListener {
+public class MapViewActivity extends LT_BaseActivity implements OnMapReadyCallback, GoogleApiClient.OnConnectionFailedListener, GoogleApiClient.ConnectionCallbacks {
 
     private GoogleMap mMap;
     private HashMap<Marker, LatLng> mMarkersHashMap;
     android.location.Location loc;
     private GPSTracker gpsTracker;
     private List<Polyline> polylines;
+    protected GoogleApiClient mGoogleApiClient;
+    private PlaceAutoCompleteAdapter mAdapter;
+    private AutoCompleteTextView findLocation;
+    protected LatLng start;
+    protected LatLng end;
+    private static final LatLngBounds BOUNDS_INDIA = new LatLngBounds(new LatLng(23.63936, 68.14712), new LatLng(28.20453, 97.34466));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,18 +105,6 @@ public class MapViewActivity extends LT_BaseActivity implements OnMapReadyCallba
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(loc.getLatitude(), loc.getLongitude()), 18.0f));
         }
 
-        Button btn_find = (Button) findViewById(R.id.btn_find);
-        btn_find.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EditText etLocation = (EditText) findViewById(R.id.et_location);
-                // Getting user input location
-                String location = etLocation.getText().toString();
-                if(location!=null && !location.equals("")){
-                    new GeocoderTask().execute(location);
-                }
-            }
-        });
         Button btn_map_type = (Button) findViewById(R.id.btn_map_type);
         btn_map_type.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,22 +113,17 @@ public class MapViewActivity extends LT_BaseActivity implements OnMapReadyCallba
             }
         });
 
-        Button btn_map_route = (Button) findViewById(R.id.btn_map_route);
-        btn_map_route.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                findRoute();
-            }
-        });
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addApi(Places.GEO_DATA_API)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .build();
+        MapsInitializer.initialize(this);
+        mGoogleApiClient.connect();
+        mAdapter = new PlaceAutoCompleteAdapter(this, android.R.layout.simple_list_item_1,
+                mGoogleApiClient, BOUNDS_INDIA, null);
+        setupAutoComplete();
 
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-//        if(loc != null) {
-//            RetroHttpManager.create(this, RetroHttpManager.REQUEST_GET_NEARBY_MERCHANTS).sendRequest(String.valueOf(loc.getLongitude()), String.valueOf(loc.getLatitude()));
-//        }
     }
 
     private void setUpMap()
@@ -213,20 +207,9 @@ public class MapViewActivity extends LT_BaseActivity implements OnMapReadyCallba
 
     }
 
-    private void findRoute() {
-        Routing routing = new Routing.Builder()
-                .travelMode(AbstractRouting.TravelMode.DRIVING)
-                .withListener(this)
-                .alternativeRoutes(true)
-                .waypoints(new ArrayList<>(mMarkersHashMap.values()))
-                .build();
-        routing.execute();
-    }
-
     private void drowPoyLines() {
-        if(mMarkersHashMap.size() > 1 ) {
-            removePolyLines();
-
+        removePolyLines();
+        if (mMarkersHashMap.size() > 1) {
             List<LatLng> latLngList = new LinkedList<>(mMarkersHashMap.values());
             PolylineOptions polyOptions = new PolylineOptions();
             polyOptions.color(getResources().getColor(R.color.black));
@@ -234,10 +217,7 @@ public class MapViewActivity extends LT_BaseActivity implements OnMapReadyCallba
             polyOptions.addAll(latLngList);
             Polyline polyline = mMap.addPolyline(polyOptions);
             polylines.add(polyline);
-        } else {
-            removePolyLines();
         }
-
     }
 
     private void removePolyLines() {
@@ -246,6 +226,64 @@ public class MapViewActivity extends LT_BaseActivity implements OnMapReadyCallba
                 poly.remove();
             }
         }
+    }
+
+    private void setupAutoComplete() {
+
+        findLocation = (AutoCompleteTextView) findViewById(R.id.et_location);
+        findLocation.setAdapter(mAdapter);
+
+        findLocation.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                final PlaceAutoCompleteAdapter.PlaceAutocomplete item = mAdapter.getItem(position);
+                final String placeId = String.valueOf(item.placeId);
+                Log.i("", "Autocomplete item selected: " + item.description);
+
+                PendingResult<PlaceBuffer> placeResult = Places.GeoDataApi
+                        .getPlaceById(mGoogleApiClient, placeId);
+                placeResult.setResultCallback(new ResultCallback<PlaceBuffer>() {
+                    @Override
+                    public void onResult(PlaceBuffer places) {
+                        if (!places.getStatus().isSuccess()) {
+                            // Request did not complete successfully
+                            Log.e("", "Place query did not complete. Error: " + places.getStatus().toString());
+                            places.release();
+                            return;
+                        }
+                        // Get the Place object from the buffer.
+                        final Place place = places.get(0);
+
+                        start=place.getLatLng();
+                        if(start != null) {
+                            mMap.animateCamera(CameraUpdateFactory.newLatLng(start));
+                        }
+
+                    }
+                });
+
+            }
+        });
+
+        findLocation.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int startNum, int before, int count) {
+                if (start != null) {
+                    start = null;
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
     }
 
     @Override
@@ -258,96 +296,18 @@ public class MapViewActivity extends LT_BaseActivity implements OnMapReadyCallba
     }
 
     @Override
-    public void onRoutingFailure(RouteException e) {
+    public void onConnected(Bundle bundle) {
 
     }
 
     @Override
-    public void onRoutingStart() {
+    public void onConnectionSuspended(int i) {
+
     }
 
     @Override
-    public void onRoutingSuccess(List<Route> route, int shortestRouteIndex) {
+    public void onConnectionFailed(ConnectionResult connectionResult) {
 
-//        if (polylines.size() > 0) {
-//            for (Polyline poly : polylines) {
-//                poly.remove();
-//            }
-//        }
-//        for (int i = 0; i <route.size(); i++) {
-//
-//            //In case of more than 5 alternative routes
-//            int colorIndex = i % COLORS.length;
-//
-//            PolylineOptions polyOptions = new PolylineOptions();
-//            polyOptions.color(getResources().getColor(COLORS[colorIndex]));
-//            polyOptions.width(10 + i * 3);
-//            polyOptions.addAll(route.get(i).getPoints());
-//            Polyline polyline = mMap.addPolyline(polyOptions);
-//            polylines.add(polyline);
-//
-//            Toast.makeText(getApplicationContext(),"Route "+ (i+1) +": distance - "+ route.get(i).getDistanceValue()+": duration - "+ route.get(i).getDurationValue(),Toast.LENGTH_SHORT).show();
-//        }
-    }
-
-    @Override
-    public void onRoutingCancelled() {
-
-    }
-
-    // An AsyncTask class for accessing the GeoCoding Web Service
-    private class GeocoderTask extends AsyncTask<String, Void, List<Address>> {
-
-        @Override
-        protected List<Address> doInBackground(String... locationName) {
-            // Creating an instance of Geocoder class
-            Geocoder geocoder = new Geocoder(getBaseContext());
-            List<Address> addresses = null;
-
-            try {
-                // Getting a maximum of 3 Address that matches the input text
-                addresses = geocoder.getFromLocationName(locationName[0], 3);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return addresses;
-        }
-
-
-        @Override
-        protected void onPostExecute(List<Address> addresses) {
-
-            if(addresses==null || addresses.size()==0){
-                Toast.makeText(getBaseContext(), "No Location found", Toast.LENGTH_SHORT).show();
-            } else {
-                // Clears all the existing markers on the map
-                mMap.clear();
-
-                // Adding Markers on Google Map for each matching address
-                for(int i=0;i<addresses.size();i++){
-
-                    Address address = (Address) addresses.get(i);
-
-                    // Creating an instance of GeoPoint, to display in Google Map
-                    LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-
-                    String addressText = String.format("%s, %s",
-                            address.getMaxAddressLineIndex() > 0 ? address.getAddressLine(0) : "",
-                            address.getCountryName());
-
-                    MarkerOptions markerOptions = new MarkerOptions();
-                    markerOptions.position(latLng);
-                    markerOptions.title(addressText);
-
-                    mMap.addMarker(markerOptions);
-
-                    // Locate the first location
-                    if(i==0)
-                        mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-                }
-            }
-
-        }
     }
 
 }

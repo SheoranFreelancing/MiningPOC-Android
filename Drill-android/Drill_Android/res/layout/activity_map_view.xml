@@ -10,22 +10,12 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
 
-        <Button
-            android:id="@+id/btn_find"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/find"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true" />
-
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/et_location"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:hint="@string/find_location"
-            android:layout_toStartOf="@id/btn_find"
-            android:layout_toLeftOf="@id/btn_find" />
+            android:hint="@string/find_location"/>
 
     </RelativeLayout>
     <fragment
@@ -40,13 +30,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start|bottom"
             android:text="Map Type"
-            android:layout_margin="20dp"/>
-        <Button
-            android:id="@+id/btn_map_route"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
-            android:text="Map Route"
             android:layout_margin="20dp"/>
     </fragment>
 
