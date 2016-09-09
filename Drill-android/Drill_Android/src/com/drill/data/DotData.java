@@ -27,7 +27,7 @@ public class DotData {
     public static final double TAN_27_DEGREES = 0.50952544949;
     public static final double RADIANS_OF_27DEGREES = 0.471239;
     public static final double GRADUAL_DECREMENT_ZRADIANS = 0.094;// (27/5)
-    public static final double EARTH_RADIUS = 6371000;//meters
+    public static final double EARTH_RADIUS = 637100;//kmeters
 
     double x, y, z;
     double yRadians, zRadians;
@@ -49,7 +49,7 @@ public class DotData {
 
     public static JSONObject getJSONArrayForData(ArrayList<LatLng> latlangList) throws JSONException {
         JSONArray jsonArrayMarkers = new JSONArray();
-        latlangList = getRandomLatLngList(5);
+        //latlangList = getRandomLatLngList(5);
         ArrayList<DotData> markerCoordinatesList = new ArrayList<DotData>(latlangList.size());
         int i = 0;
         for(LatLng latLng : latlangList) {
@@ -124,16 +124,20 @@ public class DotData {
 
     private static double getXCoord(double lat, double lon)
     {
-        return (EARTH_RADIUS * Math.cos(toRadians(lat)) * Math.cos(toRadians(lon)));
+        double x = (EARTH_RADIUS * Math.cos(toRadians(lat)) * Math.cos(toRadians(lon)));
+//        if(x < 0) x = -x;
+        return x;
     }
 
     private static double getYCoord(double lat, double lon)
     {
-        return (EARTH_RADIUS * Math.cos(toRadians(lat)) * Math.sin(toRadians(lon)));
+        double y = (EARTH_RADIUS * Math.cos(toRadians(lat)) * Math.sin(toRadians(lon)));
+//        if(y < 0) y = -y;
+        return y;
     }
 
     private static double toRadians(double valueInDegrees)
     {
-        return valueInDegrees;
+        return java.lang.Math.toRadians(valueInDegrees);
     }
 }
