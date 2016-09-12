@@ -8,11 +8,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-
-/**
- * Created by Kamesh on 8/6/16.
- */
-
 public class DotData {
 
     public static final String MARKERS_JSON_KEY = "markers_json";
@@ -27,7 +22,7 @@ public class DotData {
     public static final double TAN_27_DEGREES = 0.50952544949;
     public static final double RADIANS_OF_27DEGREES = 0.471239;
     public static final double GRADUAL_DECREMENT_ZRADIANS = 0.094;// (27/5)
-    public static final double EARTH_RADIUS = 637100;//kmeters
+    public static final double EARTH_RADIUS = 637100;//meters
 
     double x, y, z;
     double yRadians, zRadians;
@@ -49,7 +44,6 @@ public class DotData {
 
     public static JSONObject getJSONArrayForData(ArrayList<LatLng> latlangList) throws JSONException {
         JSONArray jsonArrayMarkers = new JSONArray();
-        //latlangList = getRandomLatLngList(5);
         ArrayList<DotData> markerCoordinatesList = new ArrayList<DotData>(latlangList.size());
         int i = 0;
         for(LatLng latLng : latlangList) {
@@ -103,13 +97,6 @@ public class DotData {
             jsonRodsMarkers.put(rodData.getAsJSONObject());
         }
 
-//        rodData = new DotData(last, DEFAULT_ELEVATION);
-//        jsonRodsMarkers.put(rodData.getAsJSONObject());
-
-//        for(int i = 0; i < latlangList.size(); i++) {
-//            DotData rodData = new DotData(latlangList.get(i), DEFAULT_ELEVATION + 20);
-//            jsonRodsMarkers.put(rodData.getAsJSONObject());
-//        }
         return jsonRodsMarkers;
     }
 
@@ -125,14 +112,12 @@ public class DotData {
     private static double getXCoord(double lat, double lon)
     {
         double x = (EARTH_RADIUS * Math.cos(toRadians(lat)) * Math.cos(toRadians(lon)));
-//        if(x < 0) x = -x;
         return x;
     }
 
     private static double getYCoord(double lat, double lon)
     {
         double y = (EARTH_RADIUS * Math.cos(toRadians(lat)) * Math.sin(toRadians(lon)));
-//        if(y < 0) y = -y;
         return y;
     }
 
